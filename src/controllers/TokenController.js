@@ -32,7 +32,7 @@ class TokenController {
       expiresIn: process.env.TOKEN_EXPIRATION,
     });
 
-    return res.status().json({ token });
+    return res.status(200).json({ token });
   }
 }
 
