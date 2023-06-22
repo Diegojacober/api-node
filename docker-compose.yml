@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+
+  # custom image
+  api:
+    build:
+      args:
+        user: diego
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www/
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysql
+    networks:
+      - projeto-api-node
+
+  mysql:
+    image: mysql
+    restart: always
+    ports:
+      - 3311:3306
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    networks:
+      - projeto-api-node
+
+
+networks:
+  projeto-api-node:
+    driver: bridge
