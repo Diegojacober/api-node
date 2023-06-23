@@ -64,7 +64,12 @@ export default class Aluno extends Model {
       },
     }, {
       sequelize,
+      tableName: 'alunos',
     });
     return this;
+  }
+
+  static associate(models) {
+    this.hasOne(models.File, { foreignKey: 'aluno_id' });
   }
 }
