@@ -2,17 +2,17 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-import './src/database';
+import './database';
 
 import express from 'express';
 import { resolve } from 'path';
 import helmet from 'helmet';
 import cors from 'cors';
-import homeRoutes from './src/routes/home';
-import userRoutes from './src/routes/user';
-import authRoutes from './src/routes/auth';
-import alunoRoutes from './src/routes/aluno';
-import uploadRoutes from './src/routes/upload';
+import homeRoutes from './routes/home';
+import userRoutes from './routes/user';
+import authRoutes from './routes/auth';
+import alunoRoutes from './routes/aluno';
+import uploadRoutes from './routes/upload';
 
 const whiteList = [
   'http://localhost:3000',

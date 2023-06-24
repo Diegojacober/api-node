@@ -5,17 +5,11 @@ services:
   # custom image
   api:
     build:
-      args:
-        user: diego
-        uid: 1000
       context: ./
       dockerfile: Dockerfile
-    working_dir: /var/www/
-    volumes:
-      - ./:/var/www/
     restart: unless-stopped
     ports:
-      - 3000:3000
+      - "3000:3000"
     depends_on:
       - mysql
     networks:
@@ -31,7 +25,7 @@ services:
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_ROOT_PASSWORD: ${DB_PASS}
-      MYSQL_USER: ${DB_USER}
+      MYSQL_USER: ${DB_USER_NEW}
       MYSQL_PASSWORD: ${DB_PASS}
     networks:
       - projeto-api-node

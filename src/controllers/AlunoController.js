@@ -13,6 +13,10 @@ class AlunoController {
         },
       });
 
+      if(!alunos) {
+        return res.status(200).json({"alunos": []})
+      }
+
       return res.status(200).json(alunos);
     } catch (e) {
       return res.status(400).json({
