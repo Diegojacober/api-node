@@ -1,8 +1,8 @@
 FROM node:alpine
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /var/www
 
-WORKDIR /usr/src/app
+WORKDIR /var/www
 
 COPY . .
 
@@ -12,4 +12,8 @@ RUN npm run build
 
 EXPOSE 3000
 
+CMD [ "npx", "sequelize db:migrate" ]
+
 CMD ["node", "dist/server.js"]
+
+
